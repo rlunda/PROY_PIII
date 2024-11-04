@@ -1,0 +1,30 @@
+{% extends 'inicio.html' %}
+
+{% load static %}
+
+{% block codigoDinamico %}
+
+    {% for i in elements %}
+        <section class="page-section">
+            <div class="container">
+                <div class="product-item">
+                    <div class="product-item-description d-flex me-auto">
+                        <div class="bg-faded p-5 rounded">
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper">Habitacion disponible </span>
+                                <span class="section-heading-lower">HOTEL {{i}} - Linda la vida</span>
+                            </h2>
+                            <p class="mb-0"> habitacion 1 <br> info de el cuarto <br> precio: $23.123,12 <br> DISPONIBLE
+                            </p>
+                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'index' %}">RESERVAR !</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endfor %}
+
+
+
+{% endblock %}
+
