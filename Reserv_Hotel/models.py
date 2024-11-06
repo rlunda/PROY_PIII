@@ -15,7 +15,7 @@ class habitacion(models.Model):
     prec_noch = models.DecimalField(max_digits=7, decimal_places=2)
 
     def __str__(self):
-        return f"Habitacion -- numero: {self.numero_hab} -- precio: {self.prec_noch}"
+        return f"Hotel: {self.hotel}-- Tipo: {self.tipo_hab} -- numero: {self.numero_hab} -- precio: {self.prec_noch}"
 
 
 class reserva(models.Model):
@@ -32,4 +32,5 @@ class reserva(models.Model):
 
 class servicio(models.Model):
     Estrellas = models.IntegerField()
+    
 

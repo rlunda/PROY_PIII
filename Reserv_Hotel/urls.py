@@ -1,19 +1,19 @@
 from django.urls import path
 
 from .views import (
-    index,
+    inicio,
     habitaciones,
     about,
-    inicio,
+    inicio1,
     disponibles,
 
 )
 
 
 urlpatterns = [
-    path("index/", index, name="index" ),
-    path("inicio", inicio, name ="inicio"),
+    path("inicio/", inicio, name="inicio" ),
+    path("inicio1", inicio1, name ="inicio1"),
     path("habitacion/", habitaciones, name="habitacion" ),
     path("about/", about, name="about"),
-    path("disponibles/", disponibles, name="disponibles"),
+    path("reservados/", disponibles, name="disponibles"),
 ]
