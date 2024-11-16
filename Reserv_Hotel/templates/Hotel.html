@@ -1,8 +1,8 @@
-{% extends 'inicio1.html' %}
+{% extends 'inicio.html' %}
 
 {% load static %}
 
-{% block codigoDinamico %}
+{% block codigoDinamico1 %}
 
     {% for i in elements %}
         <section class="page-section">
@@ -12,11 +12,11 @@
                         <div class="bg-faded p-5 rounded">
                             <h2 class="section-heading mb-0">
                                 <span class="section-heading-upper">Habitacion disponible </span>
-                                <span class="section-heading-lower">HOTEL {{i}} - Linda la vida</span>
+                                <span class="section-heading-lower">HOTEL - {{i.nombre}}</span>
                             </h2>
-                            <p class="mb-0"> habitacion 1 <br> info de el cuarto <br> precio: $23.123,12 <br> DISPONIBLE
+                            <p class="mb-0"> Ubicacion: {{i.ubucacion}} <br> Calificacion: {{i.calif}}<br> Estrellas: 3 <br> 
                             </p>
-                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'inicio' %}">RESERVAR !</a></div>
+                            <div class="intro-button mx-auto"><a class="btn btn-secundary btn-xl" href="{% url 'inicio' %}">Visitar !</a></div>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 class hotel (models.Model):
     nombre = models.CharField(max_length=30)
@@ -21,8 +22,8 @@ class habitacion(models.Model):
 class reserva(models.Model):
     cuarto = models.ForeignKey(habitacion, on_delete= models.CASCADE)
     nombre_cliente = models.CharField(max_length=50)
-    fech_entrada = models.DateField()
-    fech_salida = models.DateField()
+    fech_entrada = models.DateField(default=datetime.date.today)
+    fech_salida = models.DateField(default=datetime.date.today)
     precio_total = models.DecimalField(max_digits=7, decimal_places=2)
     reservado = models.BooleanField(default=False)
 
@@ -32,5 +33,3 @@ class reserva(models.Model):
 
 class servicio(models.Model):
     Estrellas = models.IntegerField()
-    
-

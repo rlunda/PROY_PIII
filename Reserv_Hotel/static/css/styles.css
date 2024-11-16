@@ -7502,7 +7502,7 @@ textarea.form-control-lg {
 }
 
 .m-2 {
-  margin: 0.5rem !important;
+  margin-left: 0;
 }
 
 .m-3 {
@@ -10959,7 +10959,7 @@ p {
 }
 
 .intro {
-  position: relative;
+  position: absolute;
 }
 @media (min-width: 992px) {
   .intro .intro-img {
