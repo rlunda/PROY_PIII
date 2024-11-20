@@ -7,6 +7,7 @@ from .views import (
     reservadoss,
     form_reserva,
     form_hotel,
+    soporte,
 )
 
 
@@ -17,5 +18,6 @@ urlpatterns = [
     path("reservados/", reservadoss, name="disponibles"),
     path("reserva_nuevo/", form_reserva, name = "reservanuevo"),
     path("nuevo_hotel/", form_hotel, name="nuevohotel"),
+    path("Soport/",soporte, name = "Soportes")
 
 ]

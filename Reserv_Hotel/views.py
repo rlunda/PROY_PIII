@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from datetime import datetime
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .formularios import formulario_reserva, formulario_hotel
@@ -24,6 +24,10 @@ def Hoteles(request):
     elements = hoteles.objects.all()
     print(elements)
     return render(request, 'Hotel.html', {'elements':elements})
+
+def soporte(request):
+    return render(request,"Soporte.html")
+
 
 def reservadoss(request):
 
