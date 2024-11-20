@@ -1,7 +1,7 @@
 from django.db import models
 import datetime
 
-class hotel (models.Model):
+class hoteles(models.Model):
     nombre = models.CharField(max_length=30)
     ubucacion = models.CharField(max_length=50)
     calif = models.FloatField()
@@ -10,7 +10,7 @@ class hotel (models.Model):
 
 
 class habitacion(models.Model):
-    hotel = models.ForeignKey(hotel, on_delete = models.CASCADE)
+    hotel = models.ForeignKey(hoteles, on_delete = models.CASCADE)
     numero_hab = models.CharField(max_length=5)
     tipo_hab = models.CharField(max_length=20)
     prec_noch = models.DecimalField(max_digits=7, decimal_places=2)

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUEVO HOTEL</title>
+</head>
+<body>
+    <h1>NUEVO HOTEL ...</h1>
+    {% if nuevo_h.errors %}
+    <p style="color: red;">Estan mal los datos!!! </p>
+    {% endif %}
+    <form action="/IRUTUR/nuevo_hotel/" method="POST">{% csrf_token %}
+
+        <table>
+            {{ nuevo_h.as_table }}
+        </table>
+    
+    <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>

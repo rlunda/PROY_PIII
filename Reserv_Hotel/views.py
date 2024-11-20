@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from datetime import datetime 
+from datetime import datetime
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from Reserv_Hotel.formularios import formulario_reserva
+from .formularios import formulario_reserva, formulario_hotel
 
 
-from Reserv_Hotel.models import reserva, hotel
+from .models import reserva, hoteles
 #from models import hotel,habitacion,reserva,servicio
 
 # Create your views here.
@@ -21,15 +21,11 @@ def habitaciones(request):
     return HttpResponse("vista de habitaciones..")
 
 def Hoteles(request):
-    elements = hotel.objects.all()
-
+    elements = hoteles.objects.all()
     print(elements)
     return render(request, 'Hotel.html', {'elements':elements})
 
-def inicio1(request):
-    return render(request, "inicio1.html")
-
-def disponibles(request):
+def reservadoss(request):
 
     #la intencion seria que muestre las habitaciones que esten disponibles, posiblemente ordenados por precio
 
@@ -58,4 +54,18 @@ def form_reserva(request):
     return render(request,"formreserva.html", {"reserv": formulario})
 
 
+def form_hotel(request):
+    
+    if request.method == "POST":
+        formulario = formulario_hotel(request.POST)
+        print("formulario: ")
+        print(formulario) 
+        if formulario.is_valid():
+            datos = formulario.cleaned_data
+            print(f"Datos: {datos}")
+            nuevo = hoteles(**datos)
+            nuevo.save()
+            return render(request, "inicio.html")
 
+    formulario = formulario_hotel()
+    return render(request,"formhotel.html", {"nuevo_h": formulario})
