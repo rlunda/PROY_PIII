@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .formularios import formulario_reserva, formulario_hotel
 
 
-from .models import reserva, hoteles
+from .models import reserva, hoteles, habitacion
 #from models import hotel,habitacion,reserva,servicio
 
 # Create your views here.
@@ -16,9 +16,12 @@ def inicio(request):
     #return HttpResponse("VISTA DE INICIO")
 
 
-def habitaciones(request):
-    
-    return HttpResponse("vista de habitaciones..")
+def habitaciones(request):# muestra habitaciones disponibles
+
+    elementos = habitacion.objects.all()
+    print(elementos)
+    return render(request, "inicio.html",{'element': elementos})
+
 
 def Hoteles(request):
     elements = hoteles.objects.all()
@@ -73,3 +76,6 @@ def form_hotel(request):
 
     formulario = formulario_hotel()
     return render(request,"formhotel.html", {"nuevo_h": formulario})
+
+def information(request):
+    return render(request, "informacion.html")
