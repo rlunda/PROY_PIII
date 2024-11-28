@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NUEVO HOTEL</title>
+    <title>NUEVO CUARTO</title>
 </head>
 <body>
-    <h1>NUEVO HOTEL ...</h1>
-    {% if nuevo_h.errors %}
+    <h1>NUEVA HABITACION ...</h1>
+    {% if nuevo_ha.errors %}
     <p style="color: red;">Estan mal los datos!!! </p>
     {% endif %}
-    <form action="/IRUTUR/nuevo_hotel/" method="POST">{% csrf_token %}
+    <form action="/IRUTUR/nueva-habit/" method="POST">{% csrf_token %}
 
         <table>
-            {{ nuevo_h.as_table }}
+            {{ nuevo_ha.as_table }}
         </table>
     
     <input type="submit" value="Enviar">
     </form>
-    <a href="/IRUTUR/nueva-habit/">Agregar una HABITACION</a>
 </body>
 </html>

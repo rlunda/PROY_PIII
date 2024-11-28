@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>resultado</title>
+</head>
+<body>
+    
+    {% if cliente %}
+    <ul>
+        {% for cli in cliente %}
+        <li>{{ cli.dni }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p style="color: green;">No se encontraron cursos de {{ nombre }}</p>
+    {% endif %}
+</body>
+</html>

@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from .formularios import formulario_reserva, formulario_hotel
+from .formularios import formulario_reserva, formulario_hotel,form_buequeda, form_habitacion
 
 
 from .models import reserva, hoteles, habitacion
@@ -37,7 +37,7 @@ def reservadoss(request):
     #la intencion seria que muestre las habitaciones que esten disponibles, posiblemente ordenados por precio
 
     reserv = reserva.objects.all()
-    print(reserv)
+    
 
     return render(request,"reservados.html",  {'reserv': reserv})
 
@@ -79,3 +79,32 @@ def form_hotel(request):
 
 def information(request):
     return render(request, "informacion.html")
+
+'''def busca_dni(request):
+        params = request.GET.get('params')
+        resultado = []
+        if params:
+            resultado = reserva.objects.filter(dni=params)
+        return render (request,'busca_dni.html',{'resultado':resultado})
+
+def buscado_dni(request):
+    parametros = request.GET["dni"]
+    print(parametros)
+
+    cliente_dni = reserva.objects.filter(nombre__icontains = parametros)
+    print(cliente_dni)
+
+    return render(request,"buscado_dni.html", {"cliente":cliente_dni})'''
+
+def nueva_habit(request):
+
+    if request.method == "POST":
+        formulario = form_habitacion(request.POST)
+        if formulario.is_valid():
+            datos=formulario.cleaned_data
+            nuevo = habitacion(**datos)
+            nuevo.save()
+            return render(request, "inicio.html")
+    formulario = form_habitacion()
+    return render(request, "nueva_habitacion.html", {"nuevo_ha":formulario})
+
