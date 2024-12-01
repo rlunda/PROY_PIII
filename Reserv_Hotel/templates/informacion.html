@@ -54,7 +54,7 @@
                             <p class="mb-0">
                                 <small><em>Call Anytime</em></small>
                                 <br />
-                                (317) 585-8468
+                                Tel: (387) 453-0551
                             </p>
                         </div>
                     </div>
@@ -63,27 +63,33 @@
         </section>
         <section class="page-section about-heading">
             <div class="container">
-                <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'assets\img\intro.jpg' %}" alt="..." />
+                <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'assets\img\iruya1.jpg' %}" alt="..." />
                 <div class="about-heading-content">
                     <div class="row">
                         <div class="col-xl-9 col-lg-10 mx-auto">
                             <div class="bg-faded rounded p-5">
                                 <h2 class="section-heading mb-4">
-                                    <span class="section-heading-upper">Strong Coffee, Strong Roots</span>
-                                    <span class="section-heading-lower">About Our Cafe</span>
+                                    <h1>Minimapa de nuestra Ubicacion </h1>
+                                    <div id="map"></div>
+                                    <script>
+                                        var map = L.map('map').setView([-34.6037, -58.3816], 10); // Coordenadas de Buenos Aires
+                                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                        }).addTo(map);
+                                        L.marker([-34.6037, -58.3816]).addTo(map)
+                                        .bindPopup('Buenos Aires')
+                                        .openPopup();
+                                    </script>
+                                    <span class="section-heading-upper">ESTE MAPA MUESTRA LA UBICACION DE EMPRESA</span>
+                                    <br>
+                                    <span class="section-heading-lower">IRUTUR - VIAJES Y ESCURCIONES</span>
                                 </h2>
-                                <p>Founded in 1987 by the Hernandez brothers, our establishment has been serving up rich coffee sourced from artisan farmers in various regions of South and Central America. We are dedicated to travelling the world, finding the best coffee, and bringing back to you here in our cafe.</p>
-                                <p class="mb-0">
-                                    We guarantee that you will fall in
-                                    <em>lust</em>
-                                    with our decadent blends the moment you walk inside until you finish your last sip. Join us for your daily routine, an outing with friends, or simply just to enjoy some alone time.
-                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+
 
 {% endblock %}

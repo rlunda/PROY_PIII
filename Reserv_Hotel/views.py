@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404 #404 busca un elemento
 
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from .formularios import formulario_reserva, formulario_hotel,form_buequeda, form_habitacion
+from django.contrib.auth import authenticate,login
+from .formularios import formulario_reserva, formulario_hotel, form_habitacion, customusercreateform
 
 
 from .models import reserva, hoteles, habitacion
@@ -64,9 +64,8 @@ def form_reserva(request):
 def form_hotel(request):
     
     if request.method == "POST":
-        formulario = formulario_hotel(request.POST)
+        formulario = formulario_hotel(request.POST, request.FILES)
         print("formulario: ")
-        print(formulario) 
         if formulario.is_valid():
             datos = formulario.cleaned_data
             print(f"Datos: {datos}")
@@ -108,3 +107,44 @@ def nueva_habit(request):
     formulario = form_habitacion()
     return render(request, "nueva_habitacion.html", {"nuevo_ha":formulario})
 
+def registro(request):
+    data = {
+        "form": customusercreateform()
+    }
+    if request.method == "POST":
+        formulario = customusercreateform(data =request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            #autentica el usuario
+            print("se registro correctamente")
+            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
+            login(request, user)
+            #dirigir al inicio
+            return redirect(to="inicio")
+        data["form"] = formulario
+
+    return render(request, "registration/registro.html", data)
+
+
+def modificar_reserva(request, id):
+    
+    reserv = get_object_or_404(reserva, id=id)
+    print(reserv)
+    print(f"el id que se mando es es:{id}")
+    data = {
+        'form': formulario_reserva(instance=reserv)
+    }
+    if request.method == "POST":
+        formulario = formulario_reserva(data=request.POST, instance=reserv, files=request.FILES)
+        print(formulario)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="inicio")
+        data['form']=formulario
+
+    return render(request, "modificar_reserva.html", data)
+
+def elimina_reserva(request, id):
+    reserv = get_object_or_404(reserva, id=id)
+    reserv.delete()
+    return redirect(to='inicio')

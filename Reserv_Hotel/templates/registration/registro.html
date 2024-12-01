@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRegistro de usuario </title>
+</head>
+<body>
+    <div calss="container">
+        <br>
+        <br>
+
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3"></div>
+
+            <div class="card">
+                <div class="card-body"></div>
+                <h2>REGISTRO DE USUARIO</h2>
+                <hr>
+                <form action="" method="post">
+
+                    {% csrf_token %}
+                    {{form}}
+
+                    <a href="{% url 'inicio' %}">| Volver</a> |
+                    <a href="{% url 'login' %}">| Iniciar sesion</a> |
+                    <input type="submit" value="REGISTRAR">
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

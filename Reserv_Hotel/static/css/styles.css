@@ -104,6 +104,15 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.right-align {
+  text-align: right;
+}
+
+map {
+   height: 300px; /* Altura del minimapa */ width: 100%; 
+
+}
+
 hr {
   margin: 1rem 0;
   color: inherit;

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Reserva</title>
+    <br><br>
+</head>
+<body>
+    <H2>Edicion de reserva</H2>
+    {% if form.errors %}
+        <p style="color: red;">Estan mal los datos!!! </p>
+    {% endif %}
+    <form action="" method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <br>
+        <input type="reset" value="CACELAR">
+        &nbsp;
+        <input type="submit" value="EDITAR">
+    </form>
+</body>
+</html>

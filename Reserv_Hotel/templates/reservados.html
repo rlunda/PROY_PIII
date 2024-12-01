@@ -24,8 +24,8 @@
                             <li>Reservado :{{ x.reservado }}</li>
                         </p>
                         <div class="intro-button mx-auto">
-                            <a class="btn btn-primary btn-xl" href="{% url 'inicio' %}">Cancelar Reserva !</a>
-                            <a class="btn btn-secondary btn-xl" href="{% url 'inicio' %}">Modificar Reserva !</a>
+                            <a class="btn btn-primary btn-xl" href="{% url 'eliminareserva' x.id %}">Eliminar Reserva !</a>
+                            <a class="btn btn-secondary btn-xl" href="{% url 'modificareserva' x.id %}">Modificar Reserva !</a>
                         </div>
                     </div>
                 </div>

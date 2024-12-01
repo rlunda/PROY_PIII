@@ -10,8 +10,8 @@
     {% if nuevo_ha.errors %}
     <p style="color: red;">Estan mal los datos!!! </p>
     {% endif %}
-    <form action="/IRUTUR/nueva-habit/" method="POST">{% csrf_token %}
-
+    <form action="/IRUTUR/nueva-habit/" method="POST">
+        {% csrf_token %}
         <table>
             {{ nuevo_ha.as_table }}
         </table>

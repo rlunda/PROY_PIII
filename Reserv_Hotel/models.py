@@ -5,6 +5,7 @@ class hoteles(models.Model):
     nombre = models.CharField(max_length=30)
     ubucacion = models.CharField(max_length=50)
     calif = models.FloatField()
+    imagen = models.ImageField(upload_to="productos", null=False)
     def __str__(self):
         return f"nombre: {self.nombre} -- calificacion: {self.calif}"
 
@@ -25,9 +26,10 @@ class habitacion(models.Model):
     info = models.CharField(max_length=200)
     prec_noch = models.DecimalField(max_digits=7, decimal_places=2)
     ocupado = models.BooleanField(default=False)
+    imagen = models.ImageField(upload_to="productos", null=False)
 
     def __str__(self):
-        return f"{self.hotel}-- Tipo: {self.tipo_hab} -- numero: {self.numero_hab} -- precio: {self.prec_noch}"
+        return f"{self.hotel.nombre}-- Tipo: {self.tipo_hab} -- numero: {self.numero_hab} -- precio: {self.prec_noch}"
 
 
 class cliente(models.Model):
