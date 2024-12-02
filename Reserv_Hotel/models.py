@@ -46,7 +46,8 @@ class cliente(models.Model):
 class reserva(models.Model):
     cuarto = models.ForeignKey(habitacion, on_delete= models.CASCADE)
 
-    Cliente = models.ForeignKey(cliente, on_delete= models.CASCADE)
+    Cliente = models.ForeignKey(cliente, on_delete= models.CASCADE) #aqui hay que poner los los mismos datos que figuran en el modelo use, tambien el dni para luego buscarlo con este, 
+    #el cliente deve ser remplasado por la lista de users, tambien se lo podria buscar por el id del user
 
     fech_entrada = models.DateField(default=datetime.date.today)
     fech_salida = models.DateField(default=datetime.date.today)

@@ -13,29 +13,25 @@
                                 <span class="section-heading-upper">  NUEVO HOTEL </span>
                                 <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'nuevohotel' %}"> Ingresar !</a></div>
                             </h2>
-                            <h2 class="section-heading mb-0">
-                                <span class="section-heading-upper"> MODIFICA HOTEL</span>
-                                <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'nuevohotel' %}"> Modificar !</a></div>
-                            </h2>
-                            <h2 class="section-heading mb-0">
-                                <span class="section-heading-upper"> ELIMINA HOTEL</span>
-                            </h2>
-                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'nuevohotel' %}"> Eliminar !</a></div>
+
                             <h2 class="section-heading mb-0">
                                 <span class="section-heading-upper"> LISTA DE HOTELES </span>
                             </h2>
-                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'nuevohotel' %}"> LISTA !</a></div>
+                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'Hoteles' %}"> LISTA !</a></div>
+                            <br>
+                            <br>
+                            <span class="section-heading-upper"> HABITACIONES </span>
                             <h2 class="section-heading mb-0">
                                 <span class="section-heading-upper"> AGREGA HABITACION </span>
                             </h2>
-                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'nuevohotel' %}"> AGREGA_HA !</a></div>
+                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'nueva_habit' %}"> AGREGA_HA !</a></div>
                             <h2 class="section-heading mb-0">
-                                <span class="section-heading-upper"> ELIMINA HABITACION </span>
+                                <span class="section-heading-upper"> LISTAR HABITACION </span>
                             </h2>
-                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'nuevohotel' %}"> ELIMINA_HA !</a></div>
+                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'listarhabitaciones' %}"> LISTA  !</a></div>
 
                         </div>
-                        <div class="bg-faded p-5 rounded">   
+                        <div class="bg-faded p-5 rounded">
                         </div>
                         <div class="bg-faded p-5 rounded">USUARIOS Y CLIENTES
                             <h2 class="section-heading mb-0">
@@ -55,18 +51,11 @@
                         <div class="bg-faded p-5 rounded">
                         </div>
                         <div class="bg-faded p-5 rounded">ADMINISTRAR RESERVAS
-                            <h2 class="section-heading mb-0">
-                                <span class="section-heading-upper">  CANCELA RESERVA</span>
-                                <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'nuevohotel' %}"> Cancela_r !</a></div>
-                            </h2>
-                            <h2 class="section-heading mb-0">
-                                <span class="section-heading-upper"> MODIFICA RESERVA</span>
-                                <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'nuevohotel' %}"> Modifica_r!</a></div>
                             </h2>
                             <h2 class="section-heading mb-0">
                                 <span class="section-heading-upper"> LISTA RESERVAS</span>
                             </h2>
-                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'nuevohotel' %}"> Listar_r !</a></div>
+                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'disponibles' %}"> Listar_r !</a></div>
                             
                         </div>
                     </div>

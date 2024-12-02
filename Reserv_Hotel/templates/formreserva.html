@@ -10,7 +10,7 @@
     {% if reserv.errors %}
         <p style="color: red;">Estan mal los datos!!! </p>
     {% endif %}
-    <form action="/IRUTUR/reserva_nuevo/>" method="POST">
+    <form action="/IRUTUR/reserva_nuevo/" method="POST">
         {% csrf_token %}
 
         <table>

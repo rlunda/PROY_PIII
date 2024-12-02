@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404 #404 busca un elemento
+from django.contrib.auth.models import User # importamos el modelo user para usarlo en el login
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate,login
 from .formularios import formulario_reserva, formulario_hotel, form_habitacion, customusercreateform
 
-
+from django.contrib.auth.decorators import login_required
 from .models import reserva, hoteles, habitacion
 #from models import hotel,habitacion,reserva,servicio
 
@@ -18,7 +19,7 @@ def inicio(request):
 
 def habitaciones(request):# muestra habitaciones disponibles
 
-    elementos = habitacion.objects.all()
+    elementos = habitacion.objects.filter(ocupado=True)
     print(elementos)
     return render(request, "inicio.html",{'element': elementos})
 
@@ -31,24 +32,26 @@ def Hoteles(request):
 def soporte(request):
     return render(request,"Soporte.html")
 
-
+@login_required
 def reservadoss(request):
 
     #la intencion seria que muestre las habitaciones que esten disponibles, posiblemente ordenados por precio
+    #aqui se listaran todas las reservas que halla hecho el usuario comparando su id o su dni
 
     reserv = reserva.objects.all()
     
 
     return render(request,"reservados.html",  {'reserv': reserv})
 
-
+@login_required
 def form_reserva(request):
 
     if request.method == "POST":
         formulario = formulario_reserva(request.POST)
         
-        print("formulario: ")
-        print(formulario)
+        print("el usuario que ingreso es: ")
+        print()
+        
         
         if formulario.is_valid():
             datos = formulario.cleaned_data
@@ -79,21 +82,6 @@ def form_hotel(request):
 def information(request):
     return render(request, "informacion.html")
 
-'''def busca_dni(request):
-        params = request.GET.get('params')
-        resultado = []
-        if params:
-            resultado = reserva.objects.filter(dni=params)
-        return render (request,'busca_dni.html',{'resultado':resultado})
-
-def buscado_dni(request):
-    parametros = request.GET["dni"]
-    print(parametros)
-
-    cliente_dni = reserva.objects.filter(nombre__icontains = parametros)
-    print(cliente_dni)
-
-    return render(request,"buscado_dni.html", {"cliente":cliente_dni})'''
 
 def nueva_habit(request):
 
@@ -146,5 +134,16 @@ def modificar_reserva(request, id):
 
 def elimina_reserva(request, id):
     reserv = get_object_or_404(reserva, id=id)
+    reserv.delete()
+    return redirect(to='inicio')
+
+def lista_habit(request):
+    habit = habitacion.objects.all()
+    cant = habitacion.objects.count()
+    data = {"habit":habit,"Cantidad":cant}
+    return render(request, "listar_habitaciones.html", data)
+
+def elimina_habit(request, id):
+    reserv = get_object_or_404(habitacion, id=id)
     reserv.delete()
     return redirect(to='inicio')
