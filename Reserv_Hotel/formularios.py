@@ -6,7 +6,7 @@ from django.contrib.auth.models import User # importamos el modelo user para usa
 class formulario_reserva(forms.ModelForm):
     class Meta():
         model = reserva
-        fields = ['cuarto','Cliente','fech_entrada','fech_salida','precio_total','reservado']
+        fields = ['cuarto','Cliente', 'dni', 'telefono','fech_entrada','fech_salida','precio_total','reservado']
 
 class formulario_hotel(forms.ModelForm):
     imagen =forms.ImageField(required=False)

@@ -147,3 +147,4 @@ def elimina_habit(request, id):
     reserv = get_object_or_404(habitacion, id=id)
     reserv.delete()
     return redirect(to='inicio')
+

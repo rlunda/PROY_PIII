@@ -32,23 +32,14 @@ class habitacion(models.Model):
         return f"{self.hotel.nombre}-- Tipo: {self.tipo_hab} -- numero: {self.numero_hab} -- precio: {self.prec_noch}"
 
 
-class cliente(models.Model):
-    nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
-    Dni = models.IntegerField()
-    email = models.CharField(max_length=30)
-    telefono = models.IntegerField()
-    mascotas = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"nombre: {self.nombre}"
 
 class reserva(models.Model):
     cuarto = models.ForeignKey(habitacion, on_delete= models.CASCADE)
 
-    Cliente = models.ForeignKey(cliente, on_delete= models.CASCADE) #aqui hay que poner los los mismos datos que figuran en el modelo use, tambien el dni para luego buscarlo con este, 
+    Cliente = models.IntegerField() #aqui hay que poner los los mismos datos que figuran en el modelo use, tambien el dni para luego buscarlo con este, 
     #el cliente deve ser remplasado por la lista de users, tambien se lo podria buscar por el id del user
-
+    dni = models.IntegerField()
+    telefono = models.IntegerField()
     fech_entrada = models.DateField(default=datetime.date.today)
     fech_salida = models.DateField(default=datetime.date.today)
     precio_total = models.DecimalField(max_digits=7, decimal_places=2)
