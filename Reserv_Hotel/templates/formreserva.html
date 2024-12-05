@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reserva de habitacion</title>
+</head>
+<body>
+    <h2>RESERVA DE HABITACION</h2>
+    {% if reserv.errors %}
+        <p style="color: red;">Estan mal los datos!!! </p>
+    {% endif %}
+    <form action="/IRUTUR/reserva_nuevo/" method="POST">
+        {% csrf_token %}
+
+        <table>
+            {{ reserv.as_table }}
+        </table>
+        
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>

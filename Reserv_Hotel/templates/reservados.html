@@ -1,0 +1,42 @@
+{% extends 'inicio.html' %}
+
+{% load static %}
+
+{% block codigoDinamico1 %}
+
+{% if  reserv %}
+<ul>
+    
+    {% for x in reserv %}
+    <section class="page-section">
+        <div class="container">
+            <div class="product-item">
+                <div class="product-item-description d-flex me-auto">
+                    <div class="bg-faded p-5 rounded">
+                        <h2 class="section-heading mb-0">
+                            <span class="section-heading-upper">Reserva nro {{x.id}}</span>
+                        </h2>
+                        <p class="mb-0">
+                            <li>cuarto :{{ x.cuarto.hotel }}</li>
+                            <li>Fecha de entrada:{{ x.fech_entrada }}</li>
+                            <li>Fecha de salida:{{ x.fech_salida }}</li>
+                            <li>Precio total: {{ x.precio_total }}</li>
+                            <li>Reservado :{{ x.reservado }}</li>
+                        </p>
+                        <div class="intro-button mx-auto">
+                            <a class="btn btn-primary btn-xl" href="{% url 'eliminareserva' x.id %}">Eliminar Reserva !</a>
+                            <a class="btn btn-secondary btn-xl" href="{% url 'modificareserva' x.id %}">Modificar Reserva !</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+</ul>
+{% else %}
+    <p style="color: green;">No se encontraron resservas</p>
+{% endif %}
+
+
+{% endblock %}

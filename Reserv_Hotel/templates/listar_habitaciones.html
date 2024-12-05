@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de habitacion</title>
+</head>
+<body>
+    <h2>LISTA DE HABITACIONES</h2>
+    <br><br>
+    {% for p in habit %}
+
+        {% if p.ocupado == True %}
+        <br><li>OCUPADO  !</li>
+        {% else %}
+        <br><li>LIBRE  !</li>
+        {% endif %}
+        <li>{{p.hotel}} -- {{p.numero_hab}}-- {{p.tipo_hab}}-- {{p.prec_noch}}-- {{p.ocupado}}</li>
+        <button>
+            <a href="{% url 'eliminahabit' p.id %}">Eliminar</a>
+        </button> <br> 
+    {% endfor %}
+    <br>
+    <a href="/IRUTUR/nueva-habit/">Alta nueva habitacion</a>
+
+    <br>
+    <p>la cantidad de habitaciones es: {{ Cantidad }}</p>
+
+</body>
+</html>

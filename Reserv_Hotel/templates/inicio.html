@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        {% load static %}
+        
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>RESERVA DE HOTELES ONLINE </title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+        
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /> 
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <style>
+        #map {
+            height: 300px; /* Altura del minimapa */
+            width: 100%;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <header>
+            <div class="right-align">
+                <ul>
+                    <a href="{% url 'inicio' %}">Inicio</a>
+                    
+                    <a href="{% url 'inicio' %}">Contactos</a></li>
+                    {% if user.is_authenticated %}
+                    
+                    <a href="{% url 'Logout' %}">Cerrar Sesion</a>
+
+                    <a href="#"> @{{user.username}}  |</a>
+                    
+                    {% else %}
+                    <a href="{% url 'login' %}">Iniciar Sesion | </a>
+                    <a href="{% url 'registro' %}">Registrar</a>
+                    {% endif %}
+                </ul>
+            </div>
+            <h1 class="site-heading text-center text-faded d-none d-lg-block">
+                <span class="site-heading-upper text-primary mb-3">IRUTURISMO</span>
+                <span class="site-heading-lower">HOTELES Y HOSPEDAJES</span>
+            </h1>
+        </header>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="inicio.html">IRUTUR - SALTA</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'inicio' %}">PRINCIPAL</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'Hoteles' %}">HOTELES</a></li>
+                        
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'informacion' %}"">INFORMACION</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'disponibles' %}">MI RESERVA</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'Soportes' %}">AYUDA SOPORTE</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    {% block codigoDinamico1 %}
+
+    {% for i in element %}
+    <section class="page-section">
+        <div class="container">
+            <div class="product-item">
+                <div class="product-item-description d-flex me-auto">
+                    <div class="bg-faded p-5 rounded">
+                        <h2 class="section-heading mb-0">
+                            <span class="section-heading-lower">Disponible </span>
+                            <span class="section-heading-upper">{{i.hotel}}</span>
+                        </h2>
+                        
+                        <p class="mb-0"> info: {{i.info}} <br> tipo de Habitacion: {{i.tipo_hab}}<br> precio {{i.prec_noch}} <br>
+                        </p>
+                        <div class="intro-button mx-auto"><a class="btn btn-secundary btn-xl" href="{% url 'reservanuevo' %}"> Hacer Reserva !</a></div>
+
+                    </div>
+                    {% if i.imagen %}
+                    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{{i.imagen.url}}" alt="..." />
+                    {% else %}
+                    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'assets\img\habitacionbase.jpg' %}" alt="..." />
+                    {% endif %}
+                </div>
+            </div>
+            
+        </div>
+    </section>
+{% endfor %}
+
+        <section class="page-section cta">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 mx-auto">
+                        <div class="cta-inner bg-faded text-center rounded">
+                            <h2 class="section-heading mb-4">
+                                <span class="section-heading-upper">falta pulir y mas detalles</span>
+                                <span class="section-heading-lower">AQUI IRIA UN MAPA</span>
+                            </h2>
+                            <p class="mb-0">aqui iria un texto informativo sobre la pagina y lo que se dispone</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endblock %}
+        <footer class="footer text-faded py-5">
+            <div class="aling-left">
+                <p > Proyecto IADES     | Materia PROGRAMACION III      |     ANIO 2024</p>
+            </div>
+        </footer>
+    </body>
+</html>

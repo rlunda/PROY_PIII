@@ -1,0 +1,65 @@
+{% extends 'inicio.html' %}
+
+{% load static %}
+{% block codigoDinamico1 %}
+    <section class="page-section">
+            <div class="container">
+                <div class="product-item">
+                    
+                    <div class="product-item-description d-flex me-auto">
+
+                        <div class="bg-faded p-5 rounded">HOTELES Y HABITACIONES
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper">  NUEVO HOTEL </span>
+                                <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'nuevohotel' %}"> Ingresar !</a></div>
+                            </h2>
+
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper"> LISTA DE HOTELES </span>
+                            </h2>
+                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'Hoteles' %}"> LISTA !</a></div>
+                            <br>
+                            <br>
+                            <span class="section-heading-upper"> HABITACIONES </span>
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper"> AGREGA HABITACION </span>
+                            </h2>
+                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'nueva_habit' %}"> AGREGA_HA !</a></div>
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper"> LISTAR HABITACION </span>
+                            </h2>
+                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'listarhabitaciones' %}"> LISTA  !</a></div>
+
+                        </div>
+                        <div class="bg-faded p-5 rounded">
+                        </div>
+                        <div class="bg-faded p-5 rounded">USUARIOS Y CLIENTES
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper">  AGREGA USUARIO</span>
+                                <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'nuevohotel' %}"> Agrega_usr !</a></div>
+                            </h2>
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper"> LISTAR CLIENTES</span>
+                                <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'nuevohotel' %}"> Listar_usr!</a></div>
+                            </h2>
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper"> ELIMINA CLIENTE</span>
+                            </h2>
+                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'nuevohotel' %}"> Eliminar_usr !</a></div>
+                            
+                        </div>
+                        <div class="bg-faded p-5 rounded">
+                        </div>
+                        <div class="bg-faded p-5 rounded">ADMINISTRAR RESERVAS
+                            </h2>
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper"> LISTA RESERVAS</span>
+                            </h2>
+                            <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'disponibles' %}"> Listar_r !</a></div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'inicio.html' %}
+
+{% load static %}
+
+{% block codigoDinamico1 %}
+
+    {% for i in elements %}
+        <section class="page-section">
+            <div class="container">
+
+                <div class="product-item">
+                    <div class="product-item-description d-flex me-auto">
+                        <div class="bg-faded p-5 rounded">
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-upper">IRUTUR VIAJES Y TURISMO </span>
+                                <span class="section-heading-lower">HOTEL - {{i.nombre}}</span>
+                            </h2>
+                            {% if i.imagen %}
+                                <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{{i.imagen.url}}" alt="..." />
+                            {% else %}
+                                <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'assets\img\hotelbase.jpg' %}" alt="..." />
+                            {% endif %}
+                                        
+                            <p class="mb-0"> Ubicacion: {{i.ubucacion}} <br> Calificacion: {{i.calif}}<br> Estrellas: 4 <br> 
+                            </p>
+                            <div class="intro-button mx-auto"><a class="btn btn-secundary btn-xl" href="{% url 'inicio' %}">Visitar !</a></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    {% endfor %}
+
+
+
+{% endblock %}
+
