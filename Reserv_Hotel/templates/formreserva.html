@@ -7,10 +7,11 @@
 </head>
 <body>
     <h2>RESERVA DE HABITACION</h2>
+    <h2>BIENBENIDO/A: -- {{user.username}} -- <br>{{user.email}} </h2>
     {% if reserv.errors %}
         <p style="color: red;">Estan mal los datos!!! </p>
     {% endif %}
-    <form action="/IRUTUR/reserva_nuevo/" method="POST">
+    <form action="" method="POST">
         {% csrf_token %}
 
         <table>

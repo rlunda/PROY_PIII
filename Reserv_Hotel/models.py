@@ -26,7 +26,7 @@ class habitacion(models.Model):
     info = models.CharField(max_length=200)
     prec_noch = models.DecimalField(max_digits=7, decimal_places=2)
     ocupado = models.BooleanField(default=False)
-    imagen = models.ImageField(upload_to="productos", null=False)
+    imagen = models.ImageField(upload_to="productos", null=True)
 
     def __str__(self):
         return f"{self.hotel.nombre}-- Tipo: {self.tipo_hab} -- numero: {self.numero_hab} -- precio: {self.prec_noch}"

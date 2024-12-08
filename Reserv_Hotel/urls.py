@@ -19,17 +19,18 @@ from .views import (
     elimina_reserva,
     lista_habit,
     elimina_habit,
+    perfil_hotel,
 )
 
 
 urlpatterns = [
     path("", inicio, name="inicio"),
     #path("inicio", inicio, name="inicio"),
-    path("inicio/", habitaciones, name="inicio" ),# Paguina de inicio
+    path("inicio/", inicio, name="inicio" ),# Paguina de inicio
     path("habitacion/", habitaciones, name="habitacion" ),# Lista de habitaciones disponibles
     path("HOTELES/", Hoteles, name="Hoteles"),# Lista de hoteles existentes
     path("reservados/", reservadoss, name="disponibles"),# Lista todas las reservas que se Hicieron
-    path("reserva_nuevo/", form_reserva, name = "reservanuevo"),# Formulario nueva reserva
+    path("reserva_nuevo/<id>", form_reserva, name = "reservanuevo"),# Formulario nueva reserva
     path("nuevo_hotel/", form_hotel, name="nuevohotel"),# Formulario agrega hotel
     path("Soport/", soporte, name = "Soportes"),# Pestania de soporte y configuraciones
     path("informacion/", information, name = "informacion"),# Pestania de informacion de pagina
@@ -40,5 +41,6 @@ urlpatterns = [
     path("Elimina_reserva/<id>", elimina_reserva, name ="eliminareserva"),
     path("lista-habitaciones/", lista_habit, name="listarhabitaciones"),
     path("Elimina_habit/<id>", elimina_habit, name ="eliminahabit"),
+    path("perfil_hotel/<id>", perfil_hotel, name = "perfilhotel"),
     
 ]

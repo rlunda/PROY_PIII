@@ -11,15 +11,14 @@ from .models import reserva, hoteles, habitacion
 
 # Create your views here.
 def inicio(request):
-    reserv = reserva.objects.filter(reservado = False)
-    print(reserv)
-    return render(request, "inicio.html", {'reserv': reserv})
-    #return HttpResponse("VISTA DE INICIO")
+    elementos = habitacion.objects.filter(ocupado=False)
+    print(elementos)
+    return render(request, "inicio.html",{'element': elementos})
 
 
 def habitaciones(request):# muestra habitaciones disponibles
 
-    elementos = habitacion.objects.filter(ocupado=True)
+    elementos = habitacion.objects.all()
     print(elementos)
     return render(request, "inicio.html",{'element': elementos})
 
@@ -38,22 +37,25 @@ def reservadoss(request):
     #la intencion seria que muestre las habitaciones que esten disponibles, posiblemente ordenados por precio
     #aqui se listaran todas las reservas que halla hecho el usuario comparando su id o su dni
 
-    reserv = reserva.objects.all()
+    reserv = reserva.objects.filter(reservado = True)
     
 
     return render(request,"reservados.html",  {'reserv': reserv})
 
-@login_required
-def form_reserva(request):
+'''@login_required
+def form_reserva(request, id):
 
     if request.method == "POST":
         formulario = formulario_reserva(request.POST)
-        
-        print("el usuario que ingreso es: ")
-        print()
-        
-        
+        print(f"El id de la habitacion solisitada es {id}")
+
         if formulario.is_valid():
+            habit = get_object_or_404(habitacion, id=id)
+            print("los datos de la habitacion son las siguientes: ")
+            print(habit)
+            print("los datos del usuario son los siguientes;")
+            usuario = request.user.username
+            print(usuario)
             datos = formulario.cleaned_data
             print(f"Datos: {datos}")
             nuevo = reserva(**datos)
@@ -61,7 +63,7 @@ def form_reserva(request):
             return render(request, "inicio.html")
 
     formulario = formulario_reserva()
-    return render(request,"formreserva.html", {"reserv": formulario})
+    return render(request,"formreserva.html", {"reserv": formulario})'''
 
 
 def form_hotel(request):
@@ -132,8 +134,41 @@ def modificar_reserva(request, id):
 
     return render(request, "modificar_reserva.html", data)
 
+@login_required
+def form_reserva(request, id):
+
+    habit = get_object_or_404(habitacion, id=id) # en esta linea comparo elid traido con la habitacion disponible y utilizo sus datos
+    print("los datos de la habitacion son las siguientes: ")
+    print(habit)
+    print("los datos del usuario son los siguientes;")
+    usuario = request.user.id # Utilizamos los datos del usuario logeado
+    print(usuario)
+
+    data=reserva(cuarto=habit, Cliente=usuario, precio_total=habit.prec_noch, reservado=True,) #creamos un modelo reserva con las instancias modificadas
+    print(data)
+
+    if request.method == "POST":
+        formulario = formulario_reserva(request.POST, instance=data)
+
+        if formulario.is_valid():
+            datos = formulario.cleaned_data
+            print(f"Datos: {datos}")
+            nuevo = reserva(**datos)
+            habit.ocupado = True
+            habit.save()
+            nuevo.save()
+            return redirect('inicio')
+    else:
+        formulario = formulario_reserva(instance=data)
+    
+    return render(request,"formreserva.html", {"reserv": formulario})
+
 def elimina_reserva(request, id):
     reserv = get_object_or_404(reserva, id=id)
+    habit = reserv.cuarto
+    print(f"esto es la idd sacada: {habit.id}")
+    habit.ocupado = False
+    habit.save()
     reserv.delete()
     return redirect(to='inicio')
 
@@ -148,3 +183,13 @@ def elimina_habit(request, id):
     reserv.delete()
     return redirect(to='inicio')
 
+def perfil_hotel(request, id):
+    datos = get_object_or_404(hoteles, id=id)
+    data = {
+        "form": datos
+    }
+    print(f"el id del hotel obtenido es {id}")
+    print(datos)
+
+    return render(request, "perfil_hotel.html", data)
+    pass
